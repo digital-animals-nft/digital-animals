@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<meta name="description" content="Digital Animals (DANM) — 5,000 glossy 3D animals on Robinhood Chain. Join the whitelist: free mint, 1 per wallet, 2,500 spots. Whitelist mint opens Wed 25 Nov 2026, 00:00 CET." />
+<link rel="icon" href="data:," />
+<title>Digital Animals — Whitelist Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#050505;
+    --bg-soft:#0b0b0d;
+    --panel:rgba(255,255,255,.045);
+    --panel-solid:#101013;
+    --line:rgba(255,255,255,.11);
+    --ink:#f5f3ef;
+    --ink-2:#c9c5bd;
+    --ink-3:#97928a;
+    --pink:#ff8ac2;
+    --pink-deep:#f75fae;
+    --green:#a8f04a;
+    --green-deep:#7ed321;
+    --gold:#ffd166;
+    --danger:#ff7a7a;
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Outfit",system-ui,sans-serif;font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--pink);color:#14040d}
+  a{color:inherit}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:"Bricolage Grotesque","Outfit",sans-serif;line-height:1.04;margin:0;letter-spacing:-.01em}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+  /* ---------- top strip ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    background:rgba(5,5,5,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-in{display:flex;align-items:center;gap:14px;padding:11px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;text-decoration:none;white-space:nowrap}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .brand small{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:11px;color:var(--ink-3);letter-spacing:.08em}
+  .topnav{margin-left:auto;display:flex;align-items:center;gap:4px}
+  .topnav a.nl{color:var(--ink-2);text-decoration:none;font-size:14.5px;font-weight:500;padding:8px 10px;border-radius:9px}
+  .topnav a.nl:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+  @media (max-width:760px){
+    .topnav a.nl{display:none}
+    .brand{font-size:15.5px;gap:8px}
+    .brand small{display:none}
+    .topnav .btn{white-space:nowrap;padding:8px 12px;font-size:13.5px}
+    .topbar-in{gap:8px}
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;font-size:15.5px;text-decoration:none;cursor:pointer;border:0;
+    padding:13px 22px;border-radius:12px;transition:transform .15s ease,filter .15s ease;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-green{background:var(--green);color:#0d1a02}
+  .btn-green:hover{filter:brightness(1.08)}
+  .btn-pink{background:var(--pink-deep);color:#fff}
+  .btn-pink:hover{filter:brightness(1.1)}
+  .btn-ghost{background:rgba(255,255,255,.06);color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-sm{padding:9px 15px;font-size:14px;border-radius:10px}
+  .btn[disabled]{opacity:.55;cursor:wait}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:52px 0 30px}
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(560px 380px at 88% 6%,rgba(247,95,174,.14),transparent 65%),
+      radial-gradient(520px 420px at 4% 92%,rgba(168,240,74,.09),transparent 65%);
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:30px}.hero{padding-top:34px}}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--pink);border:1px solid rgba(255,138,194,.4);background:rgba(247,95,174,.08);
+    padding:6px 12px;border-radius:999px;letter-spacing:.02em;
+  }
+  .chip .pulse{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @media (prefers-reduced-motion:reduce){.chip .pulse{animation:none}html{scroll-behavior:auto}}
+  .hero h1{font-size:clamp(46px,7.2vw,78px);font-weight:800;margin:18px 0 6px}
+  .hero h1 .grad-pink{color:var(--pink)}
+  .hero h1 .grad-green{color:var(--green)}
+  .hero .sub{font-size:clamp(17px,2.2vw,20px);color:var(--ink-2);max-width:34em;margin:12px 0 0}
+  .hero .sub strong{color:var(--ink)}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 8px}
+  .stats{display:flex;flex-wrap:wrap;gap:0;margin-top:26px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+  .stat{flex:1 1 110px;padding:14px 16px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:23px;font-weight:800}
+  .stat span{font-size:12.5px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}
+  .stat .free{color:var(--green)}
+  @media (max-width:520px){.stat{flex:1 1 40%}.stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+  .hero-art{position:relative}
+  .hero-art .frame{
+    border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 6px rgba(255,255,255,.03),0 0 90px rgba(247,95,174,.12);
+  }
+  .hero-art img{width:100%;height:auto}
+  .float-tag{
+    position:absolute;display:flex;align-items:center;gap:8px;
+    background:rgba(10,10,12,.86);backdrop-filter:blur(8px);
+    border:1px solid var(--line);border-radius:12px;padding:9px 13px;
+    font-size:13.5px;font-weight:600;
+  }
+  .float-tag.tl{top:16px;left:16px;color:var(--green)}
+  .float-tag.br{bottom:16px;right:16px;color:var(--pink)}
+  @media (max-width:520px){.float-tag{font-size:12px;padding:7px 10px}}
+
+  /* ---------- countdown ---------- */
+  .countdown{margin:38px 0 6px;position:relative}
+  .cd-label{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .cd-label h2{font-size:clamp(22px,3.4vw,30px);font-weight:700}
+  .cd-label p{margin:0;color:var(--ink-3);font-size:15px}
+  .cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media (max-width:520px){.cd-grid{gap:8px}}
+  .cd-cell{
+    background:var(--panel-solid);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 8px 14px;text-align:center;position:relative;overflow:hidden;
+  }
+  .cd-cell::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--green)}
+  .cd-cell:nth-child(2)::after{background:var(--pink)}
+  .cd-cell:nth-child(3)::after{background:var(--green)}
+  .cd-cell:nth-child(4)::after{background:var(--pink)}
+  .cd-num{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:clamp(34px,6.5vw,54px);line-height:1;font-variant-numeric:tabular-nums}
+  .cd-unit{margin-top:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .cd-live{display:none;margin-top:14px;background:rgba(168,240,74,.12);border:1px solid rgba(168,240,74,.45);color:var(--green);border-radius:12px;padding:13px 16px;font-weight:700;text-align:center}
+
+  /* ---------- sections ---------- */
+  section.blk{padding:52px 0 6px}
+  .sec-head{margin-bottom:22px}
+  .sec-head h2{font-size:clamp(28px,4.4vw,40px);font-weight:800}
+  .sec-head p{color:var(--ink-2);margin:10px 0 0;max-width:44em}
+
+  .phases{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:820px){.phases{grid-template-columns:1fr}}
+  .phase{border-radius:22px;padding:26px;border:1px solid var(--line);background:var(--panel)}
+  .phase.wl{border-color:rgba(168,240,74,.5);background:linear-gradient(180deg,rgba(168,240,74,.07),rgba(255,255,255,.03) 55%)}
+  .phase .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+  .phase.wl .tag{background:var(--green);color:#0d1a02}
+  .phase.pub .tag{background:rgba(255,255,255,.1);color:var(--ink);border:1px solid var(--line)}
+  .phase h3{font-size:26px;font-weight:800;margin:16px 0 4px}
+  .phase .price{font-family:"Bricolage Grotesque",sans-serif;font-size:42px;font-weight:800;line-height:1.1}
+  .phase.wl .price{color:var(--green)}
+  .phase .when{color:var(--ink-2);margin:6px 0 0}
+  .phase ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:9px}
+  .phase li{display:flex;gap:10px;color:var(--ink-2);font-size:15.5px}
+  .phase li b{color:var(--ink)}
+  .phase li .tick{color:var(--green);font-weight:700;flex:none}
+  .phase.pub li .tick{color:var(--pink)}
+  .royalty-note{margin-top:16px;border:1px dashed rgba(255,138,194,.45);border-radius:14px;padding:14px 18px;color:var(--ink-2);font-size:15px;background:rgba(247,95,174,.05)}
+  .royalty-note b{color:var(--pink)}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .step .num{
+    width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+    font-family:"JetBrains Mono",monospace;font-weight:700;font-size:17px;
+    background:rgba(255,138,194,.14);color:var(--pink);border:1px solid rgba(255,138,194,.35);
+  }
+  .step:nth-child(2) .num{background:rgba(168,240,74,.12);color:var(--green);border-color:rgba(168,240,74,.35)}
+  .step h3{font-size:20px;margin:14px 0 6px}
+  .step p{margin:0;color:var(--ink-2);font-size:15.5px}
+  .step .mini-link{display:inline-block;margin-top:12px;font-weight:700;color:var(--green);text-decoration:none}
+  .step .mini-link:hover{text-decoration:underline}
+
+  /* tasks + DM */
+  .join-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;align-items:start}
+  @media (max-width:900px){.join-grid{grid-template-columns:1fr}}
+  .task-card,.dm-card{border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:26px}
+  .task-card h3,.dm-card h3{font-size:22px;font-weight:800}
+  .task-card p,.dm-card p{color:var(--ink-2);font-size:15.5px}
+  .dm-steps{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px;counter-reset:dm}
+  .dm-steps li{display:flex;gap:12px;color:var(--ink-2);font-size:15.5px}
+  .dm-steps li b{color:var(--ink)}
+  .dm-steps .n{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;background:rgba(168,240,74,.12);color:var(--green);border:1px solid rgba(168,240,74,.35)}
+  .template-box{margin-top:18px;background:#0a0a0c;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .template-box .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+  .template-box code{font-family:"JetBrains Mono",monospace;font-size:14.5px;color:var(--ink);word-break:break-all;display:block;line-height:1.6}
+  .dm-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .dm-ctas .btn{flex:1 1 auto}
+  .task-row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+  .task-row:last-of-type{border-bottom:0}
+  .task-ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#000;border:1px solid var(--line)}
+  .task-ic svg{width:20px;height:20px;fill:var(--ink)}
+  .task-row h4{margin:2px 0 4px;font-size:17px;font-family:"Bricolage Grotesque",sans-serif}
+  .task-row p{margin:0;font-size:14.5px}
+  .task-state{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-3);text-transform:uppercase}
+  .task-state.done{color:#0d1a02;background:var(--green);border-color:var(--green)}
+  .form-note{font-size:13.5px;color:var(--ink-3);margin-top:14px}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media (max-width:820px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  .g-item{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000}
+  .g-item img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
+  .g-item figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;
+    background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;
+  }
+  .g-item figcaption span{display:block;font-family:"Outfit",sans-serif;font-weight:400;font-size:12.5px;color:var(--ink-2)}
+
+  /* faq + contract */
+  .faq{display:grid;gap:10px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:4px 20px}
+  .faq summary{cursor:pointer;font-weight:700;font-size:16.5px;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--pink);font-weight:800}
+  .faq details[open ] summary::after{content:"–"}
+  .faq details p{margin:0 0 16px;color:var(--ink-2);font-size:15.5px;max-width:46em}
+  .contract-card{margin-top:16px;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:20px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .contract-card .lbl{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .contract-addr{font-family:"JetBrains Mono",monospace;font-size:14.5px;word-break:break-all;color:var(--ink);text-decoration:none}
+  .contract-addr:hover{color:var(--pink);text-decoration:underline}
+  .copy-btn{margin-left:auto}
+
+  .safety{
+    margin:44px 0 0;border:1px solid rgba(255,209,102,.5);background:rgba(255,209,102,.07);
+    border-radius:18px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;
+  }
+  .safety svg{flex:none;width:24px;height:24px;fill:var(--gold);margin-top:2px}
+  .safety p{margin:0;color:var(--ink-2)}
+  .safety p b{color:var(--gold)}
+
+  footer{margin-top:56px;border-top:1px solid var(--line);padding:26px 0 40px}
+  .foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .foot p{margin:0;color:var(--ink-3);font-size:14px}
+  .foot nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .foot nav a{color:var(--ink-2);text-decoration:none;font-size:14.5px;font-weight:600;padding:8px 12px;border:1px solid var(--line);border-radius:10px}
+  .foot nav a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top"><span class="dot"></span>Digital Animals <small>DANM · ROBINHOOD CHAIN</small></a>
+    <nav class="topnav">
+      <a class="nl" href="#phases">Mint phases</a>
+      <a class="nl" href="#join">Whitelist</a>
+      <a class="nl" href="#gallery">Gallery</a>
+      <a class="nl" href="#faq">FAQ</a>
+      <a class="btn btn-ghost btn-sm" href="https://opensea.io/collection/digital-animals-426457897" target="_blank" rel="noopener">View on OpenSea</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="chip"><span class="pulse"></span>Whitelist campaign is live — mint opens 25 November</span>
+        <h1>Digital<br />Animals <span class="grad-pink">are</span><br /><span class="grad-green">coming.</span></h1>
+        <p class="sub"><strong>5,000 glossy 3D liquid-glass animals</strong> on Robinhood Chain. Half the supply is reserved for the whitelist — <strong>free mint, 1 per wallet</strong>. Follow on X, DM us your wallet, and mint free on 25 November.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-green" href="#join">Join the whitelist</a>
+          <a class="btn btn-ghost" href="https://opensea.io/collection/digital-animals-426457897" target="_blank" rel="noopener">View on OpenSea</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>5,000</b><span>Total supply</span></div>
+          <div class="stat"><b>2,500</b><span>Whitelist spots</span></div>
+          <div class="stat"><b class="free">FREE</b><span>Whitelist mint</span></div>
+          <div class="stat"><b>0.001 ETH</b><span>Public mint</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="frame">
+          <img src="assets/hero-fox.webp" alt="Digital Animals fox — glossy black liquid-glass 3D portrait with glowing white eyes, pink crystal flowers and neon green accents" width="1200" height="1200" />
+        </div>
+        <div class="float-tag tl">● Whitelist: FREE mint</div>
+        <div class="float-tag br">DANM · 1 of 5,000</div>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="wrap countdown" aria-live="off">
+      <div class="cd-label">
+        <h2>Whitelist mint opens in</h2>
+        <p>Wednesday 25 November 2026 · 00:00 CET (Tue 24 Nov, 23:00 UTC) · open for 24 hours</p>
+      </div>
+      <div class="cd-grid">
+        <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Minutes</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">Seconds</div></div>
+      </div>
+      <div class="cd-live" id="cd-live">The whitelist mint is live — head to OpenSea via the official link on X.</div>
+    </div>
+  </div>
+
+  <!-- MINT PHASES -->
+  <section class="blk" id="phases">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Two mint phases</h2>
+        <p>Whitelist wallets mint first — free. The next day, the remaining 2,500 pieces open to everyone in the public sale.</p>
+      </div>
+      <div class="phases">
+        <article class="phase wl">
+          <span class="tag">Phase 1 · Whitelist</span>
+          <h3>Whitelist Mint</h3>
+          <div class="price">FREE</div>
+          <p class="when"><b>Wed 25 Nov 2026, 00:00 CET</b> (Tue 24 Nov, 23:00 UTC) — open for 24 hours, until Thu 26 Nov, 00:00 CET</p>
+          <ul>
+            <li><span class="tick">✓</span><span><b>2,500 spots</b> — 50% of the total supply</span></li>
+            <li><span class="tick">✓</span><span><b>Max 1 per wallet</b></span></li>
+            <li><span class="tick">✓</span><span>Price: <b>0 ETH</b> — you only cover network gas</span></li>
+            <li><span class="tick">✓</span><span>Entry: follow <b>@DigitalAnimals</b> on X + DM your wallet address</span></li>
+          </ul>
+        </article>
+        <article class="phase pub">
+          <span class="tag">Phase 2 · Public</span>
+          <h3>Public Mint</h3>
+          <div class="price">0.001 ETH</div>
+          <p class="when"><b>Thu 26 Nov 2026, 00:00 CET</b> (Wed 25 Nov, 23:00 UTC)</p>
+          <ul>
+            <li><span class="tick">✓</span><span><b>2,500 pieces</b> — the remaining half of the supply</span></li>
+            <li><span class="tick">✓</span><span><b>Max 10 per wallet</b></span></li>
+            <li><span class="tick">✓</span><span>Price: <b>0.001 ETH</b> per NFT, plus network gas</span></li>
+            <li><span class="tick">✓</span><span>No whitelist needed — open to everyone</span></li>
+          </ul>
+        </article>
+      </div>
+      <div class="royalty-note">Secondary sales on OpenSea carry a <b>5% creator fee (royalty)</b>, locked on-chain — it cannot be lowered by sellers.</div>
+    </div>
+  </section>
+
+  <!-- HOW TO JOIN -->
+  <section class="blk" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How to join the whitelist</h2>
+        <p>Three steps, all on X. Entries close when the whitelist mint opens on 25 November.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Follow on X</h3>
+          <p>Follow <b>@DigitalAnimals</b> on X and turn on notifications — the official mint link drops there first.</p>
+          <a class="mini-link" href="https://x.com/DigitalAnimals" target="_blank" rel="noopener">Follow @DigitalAnimals →</a>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>DM your wallet</h3>
+          <p>Send a direct message to <b>@DigitalAnimals</b> on X with your Robinhood Chain (EVM) wallet address. One entry per wallet.</p>
+          <a class="mini-link" href="#join">How to DM →</a>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Mint free on 25 Nov</h3>
+          <p>Whitelisted wallets mint free on OpenSea when the window opens — max 1 per wallet, for 24 hours only.</p>
+          <a class="mini-link" href="https://opensea.io/collection/digital-animals-426457897" target="_blank" rel="noopener">Collection on OpenSea →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TASKS + DM -->
+  <section class="blk" id="join">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Whitelist tasks</h2>
+        <p>Complete both tasks on X to claim your free-mint spot. There are 2,500 spots — once they're gone, only the public mint remains.</p>
+      </div>
+      <div class="join-grid">
+        <div class="task-card">
+          <h3>Your tasks</h3>
+          <div class="task-row">
+            <div class="task-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.34l7.24-8.28L2.4 2h6.39l4.41 5.83L18.9 2zm-1.1 18.13h1.73L7.86 3.77H6.01L17.8 20.13z"/></svg>
+            </div>
+            <div>
+              <h4>Task 1 — Follow on X</h4>
+              <p>Follow <b>@DigitalAnimals</b> so we can verify your entry and you don't miss the mint link.</p>
+              <p style="margin-top:12px"><a class="btn btn-pink btn-sm" id="follow-btn" href="https://x.com/DigitalAnimals" target="_blank" rel="noopener">Follow @DigitalAnimals on X</a></p>
+            </div>
+            <span class="task-state" id="follow-state">To do</span>
+          </div>
+          <div class="task-row">
+            <div class="task-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 7H5a1 1 0 0 1 0-2h15V3H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm-4 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+            </div>
+            <div>
+              <h4>Task 2 — DM your wallet</h4>
+              <p>Send your Robinhood Chain (EVM) wallet address by direct message to <b>@DigitalAnimals</b> on X. The wallet you send is the wallet that gets whitelisted — double-check it before sending.</p>
+              <p style="margin-top:12px"><a class="btn btn-pink btn-sm" id="dm-btn" href="https://x.com/DigitalAnimals" target="_blank" rel="noopener">Open @DigitalAnimals on X</a></p>
+            </div>
+            <span class="task-state" id="dm-state">To do</span>
+          </div>
+          <p class="form-note">Whitelist rules: <b>1 entry per wallet</b> · whitelist mint is <b>free</b> · <b>max 1 mint per wallet</b> · window is 24 hours from Wed 25 Nov 2026, 00:00 CET.</p>
+        </div>
+
+        <div class="dm-card">
+          <h3>Join by DM — it's free</h3>
+          <p>There is no form and no wallet connection on this page. Whitelist entries happen entirely through X direct messages:</p>
+          <ol class="dm-steps">
+            <li><span class="n">1</span><span><b>Follow @DigitalAnimals</b> on X — entries are only accepted from followers.</span></li>
+            <li><span class="n">2</span><span><b>Open a DM</b> to @DigitalAnimals on X.</span></li>
+            <li><span class="n">3</span><span><b>Send your wallet address</b> — your Robinhood Chain (EVM) address, starting with 0x. One wallet per person.</span></li>
+            <li><span class="n">4</span><span><b>Wait for confirmation</b> — the team replies in the DM once your wallet is on the list, before the whitelist locks on 25 November.</span></li>
+          </ol>
+          <div class="template-box">
+            <div class="lbl">Copy-paste message</div>
+            <code id="dm-template">Whitelist — Digital Animals&#10;Wallet: 0x… (paste your Robinhood Chain address)</code>
+          </div>
+          <div class="dm-ctas">
+            <button class="btn btn-ghost" id="copy-template" type="button">Copy message</button>
+            <a class="btn btn-green" href="https://x.com/DigitalAnimals" target="_blank" rel="noopener">DM @DigitalAnimals on X</a>
+          </div>
+          <p class="form-note">Only ever DM the official <b>@DigitalAnimals</b> account linked from this page. Never send a seed phrase or private key — the team only needs your public wallet address, and will never ask for anything else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="blk" id="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Meet the animals</h2>
+        <p>50 species, 5,000 pieces. Every Digital Animal is a glossy liquid-glass portrait on pure black — glowing eyes, crystal flowers, neon green markings. A few of the residents:</p>
+      </div>
+      <div class="gallery">
+        <figure class="g-item" style="margin:0"><img src="assets/animal-owl.webp" alt="Digital Animals owl — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Owl<span>The night watcher</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-tiger.webp" alt="Digital Animals tiger — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Tiger<span>The striped sovereign</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-dragon.webp" alt="Digital Animals dragon — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Dragon<span>The mythic one</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-panda.webp" alt="Digital Animals panda — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Panda<span>The calm giant</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-peacock.webp" alt="Digital Animals peacock — glossy liquid-glass 3D portrait with crystal feather fan" width="760" height="760" /><figcaption>Peacock<span>The showstopper</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-lion.webp" alt="Digital Animals lion — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Lion<span>The glass king</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-elephant.webp" alt="Digital Animals elephant — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Elephant<span>The gentle titan</span></figcaption></figure>
+        <figure class="g-item" style="margin:0"><img src="assets/animal-wolf.webp" alt="Digital Animals wolf — glossy liquid-glass 3D portrait" width="760" height="760" /><figcaption>Wolf<span>The pack leader</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="blk" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>FAQ</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What is Digital Animals?</summary>
+          <p>A collection of 5,000 glossy 3D liquid-glass animal NFTs (symbol DANM) on Robinhood Chain — 50 species, each with glowing eyes, translucent pink crystal flowers and neon green accents.</p>
+        </details>
+        <details>
+          <summary>How many whitelist spots are there, and what do they cost?</summary>
+          <p>2,500 spots — 50% of the supply. Whitelist mint is completely free (0 ETH, you only pay network gas), max 1 mint per wallet, during a 24-hour window opening Wednesday 25 November 2026 at 00:00 CET.</p>
+        </details>
+        <details>
+          <summary>How do I get whitelisted?</summary>
+          <p>Follow @DigitalAnimals on X, then send a direct message to @DigitalAnimals with your Robinhood Chain (EVM) wallet address. One entry per wallet. Entries are checked against the follow list before the whitelist locks, and the team confirms your spot in the DM.</p>
+        </details>
+        <details>
+          <summary>What if I miss the whitelist?</summary>
+          <p>The public mint opens Thursday 26 November 2026 at 00:00 CET at 0.001 ETH per NFT, max 10 per wallet, for the remaining 2,500 pieces.</p>
+        </details>
+        <details>
+          <summary>Which chain and wallet do I need?</summary>
+          <p>Robinhood Chain (chain ID 4663). Any EVM wallet works — DM the same address you will mint with. The whitelist mint itself happens on OpenSea; this page never asks you to connect a wallet or sign anything.</p>
+        </details>
+        <details>
+          <summary>What is the creator fee / royalty?</summary>
+          <p>5% on secondary sales on OpenSea, locked on-chain so it can't be changed or lowered by sellers.</p>
+        </details>
+        <details>
+          <summary>Where do I mint?</summary>
+          <p>On OpenSea, via the official collection page. The mint link will be posted on X (@DigitalAnimals) and on the OpenSea collection page only — see the safety note below.</p>
+        </details>
+      </div>
+
+      <div class="contract-card">
+        <div>
+          <div class="lbl">Contract · Robinhood Chain (4663)</div>
+          <a class="contract-addr" href="https://robinhoodchain.blockscout.com/address/0xb8905582b0579be9e9ca16bb69e71d393df44473" target="_blank" rel="noopener">0xb8905582B0579Be9E9Ca16bb69E71d393Df44473</a>
+        </div>
+        <button class="btn btn-ghost btn-sm copy-btn" id="copy-addr" type="button">Copy address</button>
+      </div>
+
+      <div class="safety">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1 21h22L12 2zm0 6.2 5.9 10.3H6.1L12 8.2zM11 11v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>
+        <p><b>Stay safe:</b> the official mint link will be posted on X (@DigitalAnimals) and OpenSea only. To join the whitelist, you DM the official @DigitalAnimals account first — the team replies only to confirm your wallet, and will never send you a mint link, ask for a seed phrase, or ask you to sign anything in DMs. Beware of fake accounts and copycat collections.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <p>Digital Animals (DANM) · 5,000 NFTs · Robinhood Chain · Whitelist mint Wed 25 Nov 2026, 00:00 CET · Public mint Thu 26 Nov 2026, 00:00 CET</p>
+      <nav>
+        <a href="https://x.com/DigitalAnimals" target="_blank" rel="noopener">X — @DigitalAnimals</a>
+        <a href="https://opensea.io/collection/digital-animals-426457897" target="_blank" rel="noopener">OpenSea</a>
+        <a href="https://robinhoodchain.blockscout.com/address/0xb8905582b0579be9e9ca16bb69e71d393df44473" target="_blank" rel="noopener">Blockscout</a>
+      </nav>
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Countdown to whitelist mint: 2026-11-25T00:00:00+01:00 (CET) ---------- */
+  var target = new Date("2026-11-25T00:00:00+01:00").getTime();
+  var elD = document.getElementById("cd-d"), elH = document.getElementById("cd-h"),
+      elM = document.getElementById("cd-m"), elS = document.getElementById("cd-s"),
+      elLive = document.getElementById("cd-live");
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+  function tick(){
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
+      elLive.style.display = "block";
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff % 86400000 / 3600000);
+    var m = Math.floor(diff % 3600000 / 60000);
+    var s = Math.floor(diff % 60000 / 1000);
+    elD.textContent = pad(d); elH.textContent = pad(h); elM.textContent = pad(m); elS.textContent = pad(s);
+    setTimeout(tick, 1000);
+  }
+  tick();
+
+  /* ---------- Task states (this session only) ---------- */
+  var followBtn = document.getElementById("follow-btn");
+  var followState = document.getElementById("follow-state");
+  followBtn.addEventListener("click", function(){
+    followState.textContent = "Opened ✓";
+    followState.classList.add("done");
+  });
+  var dmBtn = document.getElementById("dm-btn");
+  var dmState = document.getElementById("dm-state");
+  dmBtn.addEventListener("click", function(){
+    dmState.textContent = "Opened ✓";
+    dmState.classList.add("done");
+  });
+
+  /* ---------- Copy DM message template ---------- */
+  var tplBtn = document.getElementById("copy-template");
+  tplBtn.addEventListener("click", function(){
+    var text = "Whitelist — Digital Animals\nWallet: 0x… (paste your Robinhood Chain address)";
+    function done(){ tplBtn.textContent = "Copied ✓"; setTimeout(function(){ tplBtn.textContent = "Copy message"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else { done(); }
+  });
+
+  /* ---------- Copy contract address ---------- */
+  var copyBtn = document.getElementById("copy-addr");
+  copyBtn.addEventListener("click", function(){
+    var addr = "0xb8905582B0579Be9E9Ca16bb69E71d393Df44473";
+    function done(){ copyBtn.textContent = "Copied ✓"; setTimeout(function(){ copyBtn.textContent = "Copy address"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr).then(done, done);
+    } else { done(); }
+  });
+
+})();
+</script>
+</body>
+</html>
