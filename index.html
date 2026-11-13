@@ -286,7 +286,7 @@
       <div>
         <span class="chip"><span class="pulse"></span>Whitelist is open — mint opens Fri 27 Nov · 04:00 UTC</span>
         <h1>Digital<br />Animals <span class="grad-pink">are</span><br /><span class="grad-green">coming.</span></h1>
-        <p class="sub"><strong>5,000 glossy 3D liquid-glass animals</strong> on Robinhood Chain. The whitelist takes <strong>4,000 spots — free mint, 1 per wallet</strong>. Follow on X, submit your EVM wallet in the form on this page, and mint free on 27 November at 04:00 UTC. The other 1,000 pieces go to the public mint <strong>4 hours later, 08:00 UTC — 0.001 ETH, FCFS</strong>.</p>
+        <p class="sub"><strong>5,000 glossy 3D liquid-glass animals</strong> on Robinhood Chain. The whitelist takes <strong>4,000 spots — free mint, 1 per wallet</strong>. Follow on X, submit your X username and EVM wallet in the form on this page, and mint free on 27 November at 04:00 UTC. The other 1,000 pieces go to the public mint <strong>4 hours later, 08:00 UTC — 0.001 ETH, FCFS</strong>.</p>
         <div class="hero-ctas">
           <a class="btn btn-green" href="#join">Join the whitelist</a>
           <a class="btn btn-ghost" href="https://opensea.io/collection/digital-animals-426457897" target="_blank" rel="noopener">View on OpenSea</a>
@@ -340,7 +340,7 @@
             <li><span class="tick">✓</span><span><b>4,000 spots</b> — 80% of the total supply</span></li>
             <li><span class="tick">✓</span><span><b>Max 1 per wallet</b></span></li>
             <li><span class="tick">✓</span><span>Price: <b>0 ETH</b> — you only cover network gas</span></li>
-            <li><span class="tick">✓</span><span>Entry: follow <b>@DigitalAnimalss</b> on X + submit your EVM wallet in the form on this page</span></li>
+            <li><span class="tick">✓</span><span>Entry: follow <b>@DigitalAnimalss</b> on X + submit your X username and EVM wallet in the form on this page</span></li>
           </ul>
         </article>
         <article class="phase pub">
@@ -376,8 +376,8 @@
         </div>
         <div class="step">
           <div class="num">2</div>
-          <h3>Submit your EVM wallet</h3>
-          <p>Fill in the whitelist form on this page with your Robinhood Chain (EVM) wallet address. One entry per wallet — no DM needed.</p>
+          <h3>Submit your X username + wallet</h3>
+          <p>Fill in the whitelist form on this page with your X username and your Robinhood Chain (EVM) wallet address. One entry per wallet — no DM needed.</p>
           <a class="mini-link" href="#join">Go to the form →</a>
         </div>
         <div class="step">
@@ -416,8 +416,8 @@
               <svg viewBox="0 0 24 24"><path d="M21 7H5a1 1 0 0 1 0-2h15V3H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm-4 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
             </div>
             <div>
-              <h4>Task 2 — Submit your EVM wallet</h4>
-              <p>Submit your Robinhood Chain (EVM) wallet address in the form on this page — no DM needed. The wallet you submit is the wallet that gets whitelisted — double-check it before sending.</p>
+              <h4>Task 2 — Submit your X username + EVM wallet</h4>
+              <p>Enter your X username and your Robinhood Chain (EVM) wallet address in the form on this page — no DM needed. The wallet you submit is the wallet that gets whitelisted — double-check it before sending.</p>
               <p style="margin-top:12px"><a class="btn btn-pink btn-sm" href="#wl-form-card">Go to the form</a></p>
             </div>
             <span class="task-state" id="form-state">To do</span>
@@ -426,9 +426,13 @@
         </div>
 
         <div class="form-card" id="wl-form-card">
-          <h3>Whitelist form — submit your EVM wallet</h3>
-          <p>No DM and no wallet connection — just type your public Robinhood Chain (EVM) address and submit. This is the wallet that will be whitelisted for the free mint.</p>
+          <h3>Whitelist form — your X username + EVM wallet</h3>
+          <p>No DM and no wallet connection — just enter your X username and your public Robinhood Chain (EVM) address, then submit. This is the wallet that will be whitelisted for the free mint, and the X username lets us verify your follow.</p>
           <form class="wl-form" id="wl-form" novalidate>
+            <div>
+              <label for="wl-x">X (Twitter) username</label>
+              <input type="text" id="wl-x" name="x_username" placeholder="@yourusername" autocomplete="off" autocapitalize="none" spellcheck="false" />
+            </div>
             <div>
               <label for="wl-wallet">EVM wallet address</label>
               <input type="text" id="wl-wallet" name="wallet_address" placeholder="0x…" autocomplete="off" autocapitalize="none" spellcheck="false" />
@@ -437,7 +441,7 @@
             <button class="btn btn-green" id="wl-submit" type="submit">Submit whitelist entry</button>
           </form>
           <div class="form-success" id="wl-success" role="status">
-            <b>You're on the list.</b> Wallet <span class="mono" id="wl-success-addr"></span> is submitted for the free whitelist mint — Fri 27 Nov 2026, 04:00 UTC, max 1 per wallet. Follow <b>@DigitalAnimalss</b> on X so you don't miss the mint link.
+            <b>You're on the list.</b> <span class="mono" id="wl-success-x"></span> with wallet <span class="mono" id="wl-success-addr"></span> is submitted for the free whitelist mint — Fri 27 Nov 2026, 04:00 UTC, max 1 per wallet. Follow <b>@DigitalAnimalss</b> on X so you don't miss the mint link.
           </div>
           <p class="form-note">One entry per wallet — submitting the same wallet twice doesn't add another spot. Never share a seed phrase or private key: the whitelist only ever needs your public wallet address, and nobody from the team will ask you for one.</p>
         </div>
@@ -482,7 +486,7 @@
         </details>
         <details>
           <summary>How do I get whitelisted?</summary>
-          <p>Follow @DigitalAnimalss on X, then submit your Robinhood Chain (EVM) wallet address in the whitelist form on this page. One entry per wallet — no DM needed.</p>
+          <p>Follow @DigitalAnimalss on X, then submit your X username and your Robinhood Chain (EVM) wallet address in the whitelist form on this page. One entry per wallet — no DM needed.</p>
         </details>
         <details>
           <summary>What if I miss the whitelist?</summary>
@@ -566,22 +570,36 @@
   var formState = document.getElementById("form-state");
   var wlForm = document.getElementById("wl-form");
   var wlInput = document.getElementById("wl-wallet");
+  var wlXInput = document.getElementById("wl-x");
   var wlError = document.getElementById("wl-error");
   var wlSubmit = document.getElementById("wl-submit");
   var wlSuccess = document.getElementById("wl-success");
   var wlSuccessAddr = document.getElementById("wl-success-addr");
+  var wlSuccessX = document.getElementById("wl-success-x");
   wlForm.addEventListener("submit", function(ev){
     ev.preventDefault();
+    var xUser = wlXInput.value.replace(/\s+/g, "").replace(/^@+/, "");
+    wlXInput.value = xUser ? "@" + xUser : "";
     var addr = wlInput.value.replace(/\s+/g, "");
     wlInput.value = addr;
+    if (!/^[A-Za-z0-9_]{1,15}$/.test(xUser)) {
+      wlError.textContent = "That doesn't look like a valid X username — use 1–15 letters, numbers or underscores, e.g. @yourname. Check it and try again.";
+      wlError.classList.add("show");
+      wlXInput.setAttribute("aria-invalid", "true");
+      wlInput.removeAttribute("aria-invalid");
+      wlXInput.focus();
+      return;
+    }
     if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) {
       wlError.textContent = "That doesn't look like a valid EVM address — it should start with 0x and be 42 characters long. Check it and try again.";
       wlError.classList.add("show");
+      wlXInput.removeAttribute("aria-invalid");
       wlInput.setAttribute("aria-invalid", "true");
       wlInput.focus();
       return;
     }
     wlError.classList.remove("show");
+    wlXInput.removeAttribute("aria-invalid");
     wlInput.removeAttribute("aria-invalid");
     wlSubmit.disabled = true;
     wlSubmit.textContent = "Submitting…";
@@ -589,6 +607,7 @@
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
+        x_username: "@" + xUser,
         wallet_address: addr,
         _subject: "Digital Animals — whitelist entry",
         _template: "table",
@@ -598,6 +617,7 @@
       if (!res.ok) { throw new Error("submit failed"); }
       return res.json();
     }).then(function(){
+      wlSuccessX.textContent = "@" + xUser;
       wlSuccessAddr.textContent = addr;
       wlSuccess.classList.add("show");
       wlForm.style.display = "none";
